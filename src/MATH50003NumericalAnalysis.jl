@@ -27,6 +27,10 @@ notebook("src/notes/DualNumbers.jmd"; nkwds...)
 #####
 
 notebook("src/sheets/sheet1.jmd"; pkwds...)
+notebook("src/sheets/sheet1s.jmd"; pkwds...)
+write("src/sheets/sheet2.jmd", replace(read("src/sheets/sheet2s.jmd", String), r"\*\*SOLUTION\*\*(.*?)\*\*END\*\*"s => ""))
+notebook("src/sheets/sheet2.jmd"; pkwds...)
+notebook("src/sheets/sheet2s.jmd"; pkwds...)
 
 #####
 # labs
@@ -34,12 +38,16 @@ notebook("src/sheets/sheet1.jmd"; pkwds...)
 
 import Literate
 
+Literate.notebook("src/labs/lab1s.jl", "labs/")
 Literate.notebook("src/labs/lab1.jl", "labs/")
-Literate.notebook("src/labs/lab2.jl", "labs/")
 
 Literate.notebook("src/labs/lab2s.jl", "labs/")
 write("src/labs/lab2.jl", replace(replace(read("src/labs/lab2s.jl", String), r"## SOLUTION(.*?)## END"s => ""), r"@test" => "@test_broken"))
 Literate.notebook("src/labs/lab2.jl", "labs/")
+
+Literate.notebook("src/labs/lab3s.jl", "labs/")
+write("src/labs/lab3.jl", replace(replace(read("src/labs/lab3s.jl", String), r"## SOLUTION(.*?)## END"s => ""), r"@test" => "@test_broken"))
+Literate.notebook("src/labs/lab3.jl", "labs/")
 
 
 ####
